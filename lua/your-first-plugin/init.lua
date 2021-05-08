@@ -118,13 +118,34 @@ local function asd()
   --  -> append at end of file
 end
 
+
+local function generate_fun_definition(field_name)
+  local first_part = "public function "
+  local indent = string.rep(" ", vim.bo.tabstop);
+
+  local firstLetterUpper = string.upper(string.sub(field_name, 1, 1))
+
+  local method = "get" .. firstLetterUpper .. string.sub(field_name, 2) .. "()"
+
+
+  local definition = indent .. first_part .. method
+
+  local second_line = indent .. "{"
+
+  -- segundo nivel de indentacion (cuerpo de la funcion)
+  local third_line = string.rep(indent, 2) .. "return $this->" .. field_name .. ";"
+
+  local fourth_line = indent .. "}"
+
+  return {"", definition, second_line, third_line, fourth_line}
+end
+
 local function insert_data()
-  local buf = vim.fn.nvim_get_current_buf()
+  -- local buf = vim.fn.nvim_get_current_buf()
   -- vim.fn.nvim_buf_set_lines(buf, 182, -1, false, {"}", "asd", "}"})
   -- vim.fn.append(183, {"", "    public function aasd()", "    {", "        return $this->asd;", "    }"})
-  -- vim.fn.append(183, {"", "", "", "", ""})
+  vim.fn.append(183, generate_fun_definition("data"))
   -- vim.fn.nvim_buf_set_text(buf, 183, 5, 188, 100, {"public function aasd()", "{", "", "return $this->asd;", "}"})
-  P(vim.bo.tabstop)
 
 end
 
