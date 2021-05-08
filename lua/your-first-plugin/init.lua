@@ -121,9 +121,10 @@ end
 local function insert_data()
   local buf = vim.fn.nvim_get_current_buf()
   -- vim.fn.nvim_buf_set_lines(buf, 182, -1, false, {"}", "asd", "}"})
-  vim.fn.append(183, {"", "    public function aasd()", "    {", "        return $this->asd;", "    }"})
+  -- vim.fn.append(183, {"", "    public function aasd()", "    {", "        return $this->asd;", "    }"})
   -- vim.fn.append(183, {"", "", "", "", ""})
   -- vim.fn.nvim_buf_set_text(buf, 183, 5, 188, 100, {"public function aasd()", "{", "", "return $this->asd;", "}"})
+  P(vim.bo.tabstop)
 
 end
 
