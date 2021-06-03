@@ -172,15 +172,19 @@ local function asd()
 
         ::continue::
       end
-      local buf = 9
+      local buf = 5
 
       -- P(func_strings)
       local concat = fullConcat(func_strings)
       P(concat)
+      local _,_, class_declaration_end_idx,_ = node:range()
+
+      vim.fn.append(class_declaration_end_idx, concat)
+
 
       -- print('concat', #concat)
 
-      vim.fn.nvim_buf_set_lines(buf, -1, -1, false, concat)
+      -- vim.fn.nvim_buf_set_lines(buf, -1, -1, false, concat)
 
       -- P(func_strings)
 
